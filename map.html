@@ -144,7 +144,7 @@ function pick(n){
   sel=n;const u=U[n],c=css(P[u[4]][1]);
   document.querySelectorAll(".st").forEach((g,i)=>g.classList.toggle("on",i===n));
   const d=document.getElementById("detail");d.style.borderLeftColor=c;
-  d.innerHTML=`<div><span class="chip" style="background:${c}">${P[u[4]][0]}</span><h3>${u[1]} <span style="font:400 13px 'IBM Plex Mono';color:var(--mute)">${u[2]}</span></h3><p style="margin-top:6px"><strong>What it targeted:</strong> ${u[5]}</p><a class="btn" href="index.html#${u[0]}">Run it in the simulator →</a></div>
+  d.innerHTML=`<div><span class="chip" style="background:${c}">${P[u[4]][0]}</span><h3>${u[1]} <span style="font:400 13px 'IBM Plex Mono';color:var(--mute)">${u[2]}</span></h3><p style="margin-top:6px"><strong>What it targeted:</strong> ${u[5]}</p><a class="btn" href="index.html#${u[0]}">Run it in the simulator →</a> <a class="btn ghost" href="updates/${u[0]}.html">Read update guide →</a></div>
   <div class="lab"><b>Practical lab</b><p style="margin:4px 0 10px">${u[6]}</p><b>Audit question</b><p style="margin-top:4px">“${u[7]}”</p><b style="margin-top:12px">Check it with our tools</b><div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">${(u[8]||[]).map(([label,url])=>`<a class="btn ghost" href="${url}" target="_blank" rel="noopener">${label}</a>`).join("")}</div></div>`;
 }
 function build(){

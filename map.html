@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Algorithm Map — 21 Years of Google Updates</title>
-<meta name="description" content="A metro-style map of 16 Google algorithm updates, with a hands-on site audit lab for college students.">
+<meta name="description" content="Explore 16 Google algorithm updates, audit a site against common quality and technical risks, and find practical fixes and SEO tools.">
+<meta property="og:title" content="The Algorithm Map — Google Update Audit Lab">
+<meta property="og:description" content="Explore 16 Google algorithm updates, audit a site against common quality and technical risks, and find practical fixes and SEO tools.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://seo.checkdr.net/map.html"><meta property="og:site_name" content="SEO Algorithm Update Simulator"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="The Algorithm Map — Google Update Audit Lab"><meta name="twitter:description" content="Explore 16 Google algorithm updates, audit a site against common quality and technical risks, and find practical fixes and SEO tools.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -84,7 +87,7 @@ footer{margin:44px 0 30px;padding-top:14px;border-top:1px solid var(--rule);colo
     <div class="score" id="score">0<small style="font:400 14px 'IBM Plex Sans'"> / 16 risks</small></div>
     <p id="verdict" style="color:var(--mute);margin:2px 0 8px">Tick what applies to the site you're auditing.</p>
     <div id="bars"></div><ol class="fixes" id="fixes"></ol>
-    <button class="btn ghost" id="copy">Copy my audit report</button>
+    <button class="btn ghost" id="copy">Copy my audit report</button> <button class="btn ghost" id="share">Copy share link</button><p id="shareStatus" role="status" aria-live="polite" style="font-size:12px;color:var(--mute);margin-top:6px"></p>
   </aside>
 </div>
 
@@ -99,24 +102,24 @@ footer{margin:44px 0 30px;padding-top:14px;border-top:1px solid var(--rule);colo
 
 <script>
 const P=[["Content & Quality","--c0"],["Links & Brand","--c1"],["Technical & UX","--c2"],["Language & Intent","--c3"],["SERP & Trust","--c4"]];
-// id, name, label, year, pillar, what it targeted, practical fix, audit statement
+// id, name, label, year, pillar, what it targeted, practical fix, audit statement, recommended tools
 const U=[
-["florida","Florida","Nov 2003",2003.9,0,"Keyword stuffing, hidden text and link rings.","Write for one reader. Read the page aloud; if the keyword sounds forced, cut it.","I repeat the target keyword in nearly every sentence, or hide text for bots."],
-["bigdaddy","BigDaddy","2005–06",2005.9,2,"Crawl infrastructure: redirects, canonical URLs, duplicate parameters.","One canonical URL per page. Use 301 redirects for moves and remove session IDs.","The same page is reachable at several URLs (parameters, www vs non-www, session IDs)."],
-["universal","Universal Search","May 2007",2007.4,4,"Blending video, images, news and maps into web results.","Add original images or video with descriptive file names, alt text and titles.","My pages are text only, with no original images or video."],
-["vince","Vince","Feb 2009",2009.1,1,"Brand and entity trust on broad, competitive queries.","Build a recognisable entity: consistent name, About page, press mentions, branded searches.","Nobody searches for my brand by name and I have no real entity behind the site."],
-["caffeine","Caffeine","Jun 2010",2010.4,2,"Continuous indexing and freshness for time-sensitive queries.","Submit an XML sitemap, keep lastmod honest, publish time-sensitive pieces promptly.","I publish time-sensitive content but have no sitemap and slow indexing."],
-["panda","Panda","Feb 2011",2011.1,0,"Thin, duplicated and ad-heavy content across a whole site.","Merge or delete thin pages, add original depth, and reduce intrusive ads.","Many pages are short, templated, copied or crowded with ads."],
-["penguin","Penguin","Apr 2012",2012.3,1,"Manipulative link building and exact-match anchor spam.","Earn links with genuinely useful assets. Vary anchors naturally; disavow only clear spam.","I buy links, or most inbound anchors are my exact money keyword."],
-["pirate","Pirate","Aug 2012",2012.6,4,"Sites with many valid DMCA copyright notices.","Use original or licensed media only, and answer takedown notices promptly.","I host or link to unlicensed movies, music or images."],
-["hummingbird","Hummingbird","Sep 2013",2013.7,3,"Meaning of the whole query rather than isolated words.","Answer the full question. Use natural headings that sound like what people ask.","My titles are keyword strings rather than answers to a real question."],
-["pigeon","Pigeon","Jul 2014",2014.5,4,"Local results tied to web ranking signals and proximity.","Claim your Business Profile; keep name, address and phone identical everywhere.","I serve a local area but have no verified address or consistent listings."],
-["mobilegeddon","Mobilegeddon","Apr 2015",2015.3,2,"Mobile-friendliness as a ranking signal on phones.","Responsive layout, viewport meta tag, readable text, 48px tap targets.","My site needs pinch-and-zoom on a phone."],
-["rankbrain","RankBrain","Oct 2015",2015.8,3,"Machine learning for new or ambiguous queries.","Cover related concepts and synonyms, and match the intent behind the search.","My page targets one exact phrase and ignores related concepts and synonyms."],
-["medic","Medic","Aug 2018",2018.6,4,"Closer scrutiny of health and money (YMYL) advice.","Named, credentialed authors, cited sources and a clear reviewed-by note.","I give health or money advice with no named expert author or sources."],
-["bert","BERT","Oct 2019",2019.8,3,"Bidirectional context, including small words like “to” and “for”.","State who it's for and which way a relationship runs, in plain sentences.","My copy is vague about who it is for and how things relate."],
-["cwv","Core Web Vitals","Jun 2021",2021.4,2,"Page experience: loading speed, visual stability, responsiveness.","Optimise the largest image, reserve space for ads, trim JavaScript, test in PageSpeed Insights.","My pages load slowly, jump around while loading, or lag when tapped."],
-["helpful","Helpful Content & E-E-A-T","2022–24",2024.2,0,"Mass-produced content, thin affiliate pages and site reputation abuse.","Show first-hand experience: original photos, tests, data and real author bios.","My pages are mass-produced or AI-written with no first-hand experience."]
+["florida","Florida","Nov 2003",2003.9,0,"Keyword stuffing, hidden text and link rings.","Write for one reader. Read the page aloud; if the keyword sounds forced, cut it.","I repeat the target keyword in nearly every sentence, or hide text for bots.,[["Writing clarity checker","https://checkdr.net/tools/writing-clarity-checker.html"],["Title & meta length checker","https://checkdr.net/tools/title-length-checker.html"]]],
+["bigdaddy","BigDaddy","2005–06",2005.9,2,"Crawl infrastructure: redirects, canonical URLs, duplicate parameters.","One canonical URL per page. Use 301 redirects for moves and remove session IDs.","The same page is reachable at several URLs (parameters, www vs non-www, session IDs).,[["Redirect checker","https://checkdr.net/tools/redirect-checker.html"]]],
+["universal","Universal Search","May 2007",2007.4,4,"Blending video, images, news and maps into web results.","Add original images or video with descriptive file names, alt text and titles.","My pages are text only, with no original images or video.,[["Social & SERP preview","https://checkdr.net/tools/social-preview-builder.html"]]],
+["vince","Vince","Feb 2009",2009.1,1,"Brand and entity trust on broad, competitive queries.","Build a recognisable entity: consistent name, About page, press mentions, branded searches.","Nobody searches for my brand by name and I have no real entity behind the site.,[["Bulk Domain Rating checker","https://checkdr.net/"]]],
+["caffeine","Caffeine","Jun 2010",2010.4,2,"Continuous indexing and freshness for time-sensitive queries.","Submit an XML sitemap, keep lastmod honest, publish time-sensitive pieces promptly.","I publish time-sensitive content but have no sitemap and slow indexing.,[["Site audit","https://checkdr.net/tools/site-audit.html"],["XML sitemap generator","https://checkdr.net/tools/sitemap-generator.html"]]],
+["panda","Panda","Feb 2011",2011.1,0,"Thin, duplicated and ad-heavy content across a whole site.","Merge or delete thin pages, add original depth, and reduce intrusive ads.","Many pages are short, templated, copied or crowded with ads.,[["Writing clarity checker","https://checkdr.net/tools/writing-clarity-checker.html"],["Title & meta length checker","https://checkdr.net/tools/title-length-checker.html"]]],
+["penguin","Penguin","Apr 2012",2012.3,1,"Manipulative link building and exact-match anchor spam.","Earn links with genuinely useful assets. Vary anchors naturally; disavow only clear spam.","I buy links, or most inbound anchors are my exact money keyword.,[["Bulk Domain Rating checker","https://checkdr.net/"]]],
+["pirate","Pirate","Aug 2012",2012.6,4,"Sites with many valid DMCA copyright notices.","Use original or licensed media only, and answer takedown notices promptly.","I host or link to unlicensed movies, music or images.,[["Security headers checker","https://checkdr.net/tools/security-headers.html"]]],
+["hummingbird","Hummingbird","Sep 2013",2013.7,3,"Meaning of the whole query rather than isolated words.","Answer the full question. Use natural headings that sound like what people ask.","My titles are keyword strings rather than answers to a real question.,[["Readability checker","https://checkdr.net/tools/readability-checker.html"],["Keyword clustering","https://checkdr.net/tools/keyword-clustering.html"]]],
+["pigeon","Pigeon","Jul 2014",2014.5,4,"Local results tied to web ranking signals and proximity.","Claim your Business Profile; keep name, address and phone identical everywhere.","I serve a local area but have no verified address or consistent listings.,[["Schema markup generator","https://checkdr.net/tools/schema-generator.html"]]],
+["mobilegeddon","Mobilegeddon","Apr 2015",2015.3,2,"Mobile-friendliness as a ranking signal on phones.","Responsive layout, viewport meta tag, readable text, 48px tap targets.","My site needs pinch-and-zoom on a phone.,[["Meta preview","https://checkdr.net/tools/meta-preview.html"]]],
+["rankbrain","RankBrain","Oct 2015",2015.8,3,"Machine learning for new or ambiguous queries.","Cover related concepts and synonyms, and match the intent behind the search.","My page targets one exact phrase and ignores related concepts and synonyms.,[["Readability checker","https://checkdr.net/tools/readability-checker.html"],["Keyword clustering","https://checkdr.net/tools/keyword-clustering.html"]]],
+["medic","Medic","Aug 2018",2018.6,4,"Closer scrutiny of health and money (YMYL) advice.","Named, credentialed authors, cited sources and a clear reviewed-by note.","I give health or money advice with no named expert author or sources.,[["Schema markup generator","https://checkdr.net/tools/schema-generator.html"],["Writing clarity checker","https://checkdr.net/tools/writing-clarity-checker.html"]]],
+["bert","BERT","Oct 2019",2019.8,3,"Bidirectional context, including small words like “to” and “for”.","State who it's for and which way a relationship runs, in plain sentences.","My copy is vague about who it is for and how things relate.,[["Readability checker","https://checkdr.net/tools/readability-checker.html"],["Keyword clustering","https://checkdr.net/tools/keyword-clustering.html"]]],
+["cwv","Core Web Vitals","Jun 2021",2021.4,2,"Page experience: loading speed, visual stability, responsiveness.","Optimise the largest image, reserve space for ads, trim JavaScript, test in PageSpeed Insights.","My pages load slowly, jump around while loading, or lag when tapped.,[["Site audit","https://checkdr.net/tools/site-audit.html"],["XML sitemap generator","https://checkdr.net/tools/sitemap-generator.html"]]],
+["helpful","Helpful Content & E-E-A-T","2022–24",2024.2,0,"Mass-produced content, thin affiliate pages and site reputation abuse.","Show first-hand experience: original photos, tests, data and real author bios.","My pages are mass-produced or AI-written with no first-hand experience.,[["Schema markup generator","https://checkdr.net/tools/schema-generator.html"],["Writing clarity checker","https://checkdr.net/tools/writing-clarity-checker.html"]]]
 ];
 const X=y=>165+(y-2003.5)*36,Y=i=>70+i*92,NS="http://www.w3.org/2000/svg",css=v=>`var(${v})`;
 const svg=document.getElementById("map");let sel=0;const checked=new Set();
@@ -142,13 +145,13 @@ function pick(n){
   document.querySelectorAll(".st").forEach((g,i)=>g.classList.toggle("on",i===n));
   const d=document.getElementById("detail");d.style.borderLeftColor=c;
   d.innerHTML=`<div><span class="chip" style="background:${c}">${P[u[4]][0]}</span><h3>${u[1]} <span style="font:400 13px 'IBM Plex Mono';color:var(--mute)">${u[2]}</span></h3><p style="margin-top:6px"><strong>What it targeted:</strong> ${u[5]}</p><a class="btn" href="index.html#${u[0]}">Run it in the simulator →</a></div>
-  <div class="lab"><b>Practical lab</b><p style="margin:4px 0 10px">${u[6]}</p><b>Audit question</b><p style="margin-top:4px">“${u[7]}”</p></div>`;
+  <div class="lab"><b>Practical lab</b><p style="margin:4px 0 10px">${u[6]}</p><b>Audit question</b><p style="margin-top:4px">“${u[7]}”</p><b style="margin-top:12px">Check it with our tools</b><div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">${(u[8]||[]).map(([label,url])=>`<a class="btn ghost" href="${url}" target="_blank" rel="noopener">${label}</a>`).join("")}</div></div>`;
 }
 function build(){
   const box=document.getElementById("checks");
   U.forEach((u,n)=>{const l=document.createElement("label");
     l.innerHTML=`<input type="checkbox" data-n="${n}"><i style="background:${css(P[u[4]][1])}"></i><span>${u[7]}<small>${u[1].toUpperCase()} · ${u[2]}</small></span>`;
-    l.querySelector("input").onchange=e=>{e.target.checked?checked.add(n):checked.delete(n);score()};box.append(l)});
+    l.querySelector("input").checked=checked.has(n);l.querySelector("input").onchange=e=>{e.target.checked?checked.add(n):checked.delete(n);score();syncAuditHash()};box.append(l)});
 }
 function score(){
   const k=checked.size,tot=[0,0,0,0,0],hit=[0,0,0,0,0];
@@ -162,7 +165,10 @@ document.getElementById("copy").onclick=e=>{
   const t="ALGORITHM MAP AUDIT — "+checked.size+"/16 risks\n"+[...checked].sort((a,b)=>a-b).map(n=>"• "+U[n][1]+" ("+U[n][2]+"): "+U[n][6]).join("\n");
   (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>e.target.textContent="Copied ✓",()=>prompt("Copy your report:",t));
 };
-draw();build();pick(0);score();
+function readAuditHash(){const m=location.hash.match(/^#a=([0-9a-f]{1,4})$/i);if(!m)return;const mask=parseInt(m[1],16);U.forEach((u,n)=>{if(mask&(1<<n))checked.add(n)});}
+function syncAuditHash(){let mask=0;checked.forEach(n=>mask|=(1<<n));history.replaceState(null,"",location.pathname+location.search+"#a="+mask.toString(16).padStart(4,"0"));}
+document.getElementById("share").addEventListener("click",async()=>{syncAuditHash();const status=document.getElementById("shareStatus");try{await navigator.clipboard.writeText(location.href);status.textContent="Share link copied.";}catch{status.textContent="Copy this link: "+location.href;}});
+readAuditHash();draw();build();pick(0);score();
 </script>
 </body>
 </html>
